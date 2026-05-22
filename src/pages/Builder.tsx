@@ -346,7 +346,7 @@ function BlockPicker({ value, filter, onSelect, onFilterChange, open, onOpen, on
   );
 }
 
-export default function Builder() {
+export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
   const [seed, setSeed] = useState("");
   const [version, setVersion] = useState("1.18");
   const [centerX, setCenterX] = useState("");
@@ -396,8 +396,16 @@ export default function Builder() {
           <h1 className="font-bold text-lg leading-none">MC Cluster Finder</h1>
           <p className="text-muted-foreground text-xs mt-0.5">Command Builder</p>
         </div>
-        <a href="https://github.com/batthepig-two/MC-block-finder" target="_blank" rel="noopener noreferrer"
-          className="ml-auto text-xs text-muted-foreground hover:text-foreground transition-colors">CLI on GitHub ↗</a>
+        <div className="ml-auto flex items-center gap-3">
+          {onTutorial && (
+            <button onClick={onTutorial}
+              className="text-xs font-medium px-3 py-1.5 rounded-md border border-border hover:border-primary hover:text-primary transition-colors">
+              ? Tutorial
+            </button>
+          )}
+          <a href="https://github.com/batthepig-two/MC-block-finder" target="_blank" rel="noopener noreferrer"
+            className="text-xs text-muted-foreground hover:text-foreground transition-colors">CLI on GitHub ↗</a>
+        </div>
       </header>
 
       <div className="flex-1 max-w-2xl mx-auto w-full px-4 py-8 flex flex-col gap-6" onClick={e => e.stopPropagation()}>
