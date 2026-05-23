@@ -353,6 +353,8 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
   const [centerZ, setCenterZ] = useState("");
   const [radius, setRadius] = useState("5000");
   const [steps, setSteps] = useState<Step[]>([makeStep()]);
+  const [sortKey, setSortKey] = useState<"" | "x" | "z" | "dist">("");
+  const [sortDesc, setSortDesc] = useState(false);
   const [copied, setCopied] = useState(false);
   const [openPicker, setOpenPicker] = useState<number | null>(null);
 
@@ -371,13 +373,15 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
     if (centerX.trim() && centerX.trim() !== "0") parts.push(`-x ${centerX.trim()}`);
     if (centerZ.trim() && centerZ.trim() !== "0") parts.push(`-z ${centerZ.trim()}`);
     if (radius.trim() && radius.trim() !== "5000") parts.push(`-r ${radius.trim()}`);
+    if (sortKey) parts.push(`-O ${sortKey}`);
+    if (sortDesc) parts.push(`-D`);
     for (const step of validSteps) {
       parts.push(`-b ${step.block}`);
       parts.push(`-S ${step.searchRadius || "500"}`);
       parts.push(`-C ${step.clusterRadius || "32"}`);
     }
     return parts.join(" \\\n  ");
-  }, [seed, version, centerX, centerZ, radius, steps]);
+  }, [seed, version, centerX, centerZ, radius, sortKey, sortDesc, steps]);
 
   const command = buildCommand();
 
@@ -508,6 +512,32 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
             className="border border-dashed border-border rounded-lg py-3 text-sm text-muted-foreground hover:border-primary hover:text-primary transition-colors disabled:opacity-40 disabled:cursor-not-allowed">
             + Add Step {steps.length >= 16 ? "(max reached)" : ""}
           </button>
+        </section>
+
+        {/* Output Options */}
+        <section className="flex flex-col gap-3">
+          <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Output Options</h2>
+          <div className="bg-card border border-border rounded-lg p-4 flex flex-col gap-4">
+            <div className="grid grid-cols-2 gap-4">
+              <div className="flex flex-col gap-1.5">
+                <label className="text-xs font-medium text-muted-foreground">Sort Results <code className="text-muted-foreground/60">-O</code></label>
+                <select value={sortKey} onChange={e => setSortKey(e.target.value as "" | "x" | "z" | "dist")}
+                  className="bg-input border border-border rounded-md px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-ring">
+                  <option value="">No sort (default)</option>
+                  <option value="dist">Distance from center</option>
+                  <option value="x">X coordinate</option>
+                  <option value="z">Z coordinate</option>
+                </select>
+              </div>
+              <div className="flex flex-col gap-1.5 justify-end">
+                <label className="flex items-center gap-2 cursor-pointer pb-2">
+                  <input type="checkbox" checked={sortDesc} onChange={e => setSortDesc(e.target.checked)}
+                    className="rounded border-border accent-primary" />
+                  <span className="text-xs font-medium text-muted-foreground">Reverse order <code className="text-muted-foreground/60">-D</code></span>
+                </label>
+              </div>
+            </div>
+          </div>
         </section>
 
         {/* Output */}
