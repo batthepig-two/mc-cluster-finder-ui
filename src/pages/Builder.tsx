@@ -367,7 +367,7 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
     if (!seed.trim()) return null;
     const validSteps = steps.filter(s => s.block.trim());
     if (validSteps.length === 0) return null;
-    const parts = ["./mc-block-finder"];
+    const parts = ["./relay"];
     parts.push(`-s ${seed.trim()}`);
     parts.push(`-v ${version}`);
     if (centerX.trim() && centerX.trim() !== "0") parts.push(`-x ${centerX.trim()}`);
@@ -397,7 +397,7 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
       <header className="border-b border-border px-6 py-4 flex items-center gap-3">
         <div className="w-8 h-8 rounded bg-primary/20 border border-primary/40 flex items-center justify-center text-sm">⛏</div>
         <div>
-          <h1 className="font-bold text-lg leading-none">MC Cluster Finder</h1>
+          <h1 className="font-bold text-lg leading-none">Relay Template Generator</h1>
           <p className="text-muted-foreground text-xs mt-0.5">Command Builder</p>
         </div>
         <div className="ml-auto flex items-center gap-3">
@@ -407,7 +407,7 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
               ? Tutorial
             </button>
           )}
-          <a href="https://github.com/batthepig-two/MC-block-finder" target="_blank" rel="noopener noreferrer"
+          <a href="https://github.com/batthepig-two/Relay" target="_blank" rel="noopener noreferrer"
             className="text-xs text-muted-foreground hover:text-foreground transition-colors">CLI on GitHub ↗</a>
         </div>
       </header>
@@ -549,7 +549,7 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
                 <pre className="p-4 text-sm font-mono text-primary overflow-x-auto whitespace-pre leading-relaxed">{command}</pre>
                 <div className="border-t border-border px-4 py-3 flex items-center justify-between bg-muted/20">
                   <span className="text-xs text-muted-foreground">
-                    Run inside the <code className="font-mono bg-muted px-1 rounded">MC-block-finder</code> directory
+                    Run inside the <code className="font-mono bg-muted px-1 rounded">Relay</code> directory
                   </span>
                   <button onClick={copyCommand}
                     className="text-xs font-semibold px-3 py-1.5 rounded-md bg-primary text-primary-foreground hover:opacity-90 transition-opacity">
@@ -570,10 +570,10 @@ export default function Builder({ onTutorial }: { onTutorial?: () => void }) {
           <h2 className="text-xs font-semibold text-muted-foreground uppercase tracking-wider">Install the CLI</h2>
           <div className="bg-card border border-border rounded-lg p-4 flex flex-col gap-2 text-xs text-muted-foreground">
             <p>Works on macOS, Linux, and <strong className="text-foreground">a-Shell</strong> (iOS):</p>
-            <pre className="font-mono text-foreground bg-muted rounded-md px-3 py-2 overflow-x-auto whitespace-pre">{`curl -fsSL https://raw.githubusercontent.com/Batthepig-two/MC-block-finder/main/install.sh -o install.sh
+            <pre className="font-mono text-foreground bg-muted rounded-md px-3 py-2 overflow-x-auto whitespace-pre">{`curl -fsSL https://raw.githubusercontent.com/Batthepig-two/Relay/main/install.sh -o install.sh
 sh install.sh
-cd MC-block-finder`}</pre>
-            <p>Then paste your command above. Use <code className="font-mono bg-muted px-1 rounded">./mc-block-finder -l</code> to list all blocks, or <code className="font-mono bg-muted px-1 rounded">-i</code> for interactive mode.</p>
+cd Relay`}</pre>
+            <p>Then paste your command above. Use <code className="font-mono bg-muted px-1 rounded">./relay -l</code> to list all blocks, or <code className="font-mono bg-muted px-1 rounded">-i</code> for interactive mode.</p>
           </div>
         </section>
 
@@ -582,9 +582,9 @@ cd MC-block-finder`}</pre>
       <footer className="border-t border-border px-6 py-4 text-center text-xs text-muted-foreground">
         Powered by <a href="https://github.com/Cubitect/cubiomes" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">cubiomes</a>
         {" · "}
-        <a href="https://github.com/batthepig-two/MC-block-finder" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">CLI source</a>
+        <a href="https://github.com/batthepig-two/Relay" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">CLI source</a>
         {" · "}
-        <a href="https://github.com/batthepig-two/mc-cluster-finder-ui" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">UI source</a>
+        <a href="https://github.com/batthepig-two/Relay-template_generator" target="_blank" rel="noopener noreferrer" className="text-primary hover:underline">UI source</a>
       </footer>
     </div>
   );
