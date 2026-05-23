@@ -1,8 +1,8 @@
 # Relay Template Generator
 
-Web UI for [MC Block Finder](https://github.com/batthepig-two/MC-block-finder) — build copy-pasteable commands for the CLI tool.
+Web UI for [Relay](https://github.com/batthepig-two/Relay) — build copy-pasteable commands for the CLI tool.
 
-**[Open the tool →](https://batthepig-two.github.io/mc-cluster-finder-ui/)**
+**[Open the tool →](https://batthepig-two.github.io/Relay-template_generator/)**
 
 ## What it does
 
@@ -13,9 +13,9 @@ All 222 blocks from `blocks.c` are included, grouped by category, with dimension
 ## Install the CLI
 
 ```sh
-curl -fsSL https://raw.githubusercontent.com/Batthepig-two/MC-block-finder/main/install.sh -o install.sh
+curl -fsSL https://raw.githubusercontent.com/Batthepig-two/Relay/main/install.sh -o install.sh
 sh install.sh
-cd MC-block-finder
+cd Relay
 ```
 
 Works on macOS, Linux, and [a-Shell](https://holzschu.github.io/a-Shell_iOS/) (iOS).
